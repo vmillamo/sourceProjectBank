@@ -1,6 +1,6 @@
 spring:
   application:
-    name: prj-account-mngt-bank
+    name: prj-accountmngt-bank
   cloud:
     config:
       uri: http://localhost:8084
