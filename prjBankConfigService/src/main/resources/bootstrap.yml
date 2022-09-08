@@ -1,0 +1,19 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/romanmedina/config-data.git
+          #searchPaths: config-data
+          username: romanmedina
+          password: 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
+  security:
+    user:
+      name: root
+      password: cl@v3
+  
