@@ -8,10 +8,10 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/romanmedina/config-data.git
+          uri: https://github.com/vmillamo/config_data.git
           #searchPaths: config-data
-          username: romanmedina
-          password: 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
+          username: vmillamo
+          password: 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
   security:
     user:
       name: root
