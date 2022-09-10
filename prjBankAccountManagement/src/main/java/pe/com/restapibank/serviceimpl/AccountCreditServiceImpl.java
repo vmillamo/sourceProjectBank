@@ -1,5 +1,7 @@
 package pe.com.restapibank.serviceimpl;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +22,6 @@ public class AccountCreditServiceImpl implements IAccountCreditService{
 
 	@Autowired
 	IAccountCreditRepository creditRepo;
-
-	@Autowired
-	IAccountCreditRepository perso;
-	
 	
 	@Autowired
 	IClientRepository clientRepo;
@@ -71,6 +69,14 @@ public class AccountCreditServiceImpl implements IAccountCreditService{
 	public Mono<Void> delete(AccountCredit credit) {
 		return creditRepo.delete(credit);
 	}
+	
+	@Override
+	public Mono<Client> clientFind(Integer idCLient){
+		return clientRepo.findById(idCLient);
+//    	LocalDateTime dateTime = LocalDateTime.parse("2022-09-27T12:26:30.107");
+//    	Mono<Client> client = Mono.just(new Client(11,"empresarial",dateTime,"user01","192.66.22.33",2));
+//    	return client;
+	}
 
 
 //	Personal: solo se permite un solo crédito por persona.
@@ -78,7 +84,7 @@ public class AccountCreditServiceImpl implements IAccountCreditService{
 	public Mono<AccountCredit> saveAccountCreditByClient(AccountCredit accountCredit) {
 		log.info("*****INICIO: Crear cuenta de credito por persona*****");
 		Flux<AccountCredit> getAccountCreditByClient = accountCredClient.getAccountCreditByClient(accountCredit.getIdClient());
-		Mono<Client> getClientById = clientRepo.findById(accountCredit.getIdClient());
+		Mono<Client> getClientById = this.clientFind(accountCredit.getIdClient());
 		if(getClientById.block().getTypeClient().equals(Constant.Personnel) || 
 				getClientById.block().getTypeClient().equals(Constant.Personnel_vip) || getClientById.block().getTypeClient().equals(Constant.Bussiness_pyme)) {
 			if(!(getAccountCreditByClient.count().block().longValue()>0)) {
@@ -92,6 +98,6 @@ public class AccountCreditServiceImpl implements IAccountCreditService{
 			log.info("**ERROR: El cliente no es de tipo Personal**");
 			return null;
 		}
-
 	}
+	
 }

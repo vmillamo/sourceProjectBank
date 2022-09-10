@@ -4,10 +4,15 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Document(collection = "client")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Client {
 
 	@Id
@@ -17,6 +22,18 @@ public class Client {
 	private String userCreation;
 	private String ipCreation;
 	private Integer idPerson;
+	
+    @Override
+    public String toString() {
+        return "Client{" +
+                "idClient=" + idClient +
+                ", typeClient='" + typeClient + '\'' +
+                ", dateEntry='" + dateEntry + '\'' +
+                ", userCreation='" + userCreation + '\'' +
+                ", ipCreation='" + ipCreation + '\'' +
+                ", idPerson='" + idPerson + '\'' +
+                '}';
+    }
 	
 	@Override
     public int hashCode() {
@@ -37,9 +54,25 @@ public class Client {
         Client other = (Client) obj;
         if (idClient == null) {
             if (other.idClient != null)
-                return false;
+               return false;
         } else if (!idClient.equals(other.idClient))
             return false;
         return true;
     }
+    
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Client client = (Client) o;
+//        return idClient.equals(client.idClient) && typeClient.equals(client.typeClient) 
+//        		&& dateEntry.equals(client.dateEntry) && userCreation.equals(client.userCreation) 
+//        		&& ipCreation.equals(client.ipCreation) && idPerson.equals(client.idPerson);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(idClient, typeClient, dateEntry, userCreation, ipCreation, idPerson);
+//    }    
+      
 }

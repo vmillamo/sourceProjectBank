@@ -4,9 +4,12 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 @Document(collection = "account_credit")
 public class AccountCredit {
 
@@ -23,6 +26,24 @@ public class AccountCredit {
 	private Integer idClient;
 	private Integer idBank;
 	private Integer numberMovMax;
+	
+    @Override
+    public String toString() {
+        return "Afiliado{" +
+                "idCredit=" + idCredit +
+                ", typeCurrency='" + typeCurrency + '\'' +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", depositDate='" + depositDate + '\'' +
+                ", datePay='" + datePay + '\'' +
+                ", balance='" + balance + '\'' +
+                ", totalConsumed='" + totalConsumed + '\'' +
+                ", countMonth='" + countMonth + '\'' +
+                ", interestPay='" + interestPay + '\'' +
+                ", idClient='" + idClient + '\'' +
+                ", idBank='" + idBank + '\'' +
+                ", numberMovMax='" + numberMovMax + '\'' +
+                '}';
+    }	
 	
 	@Override
     public int hashCode() {
@@ -48,4 +69,9 @@ public class AccountCredit {
             return false;
         return true;
     }
+
+	public AccountCredit(int idCredit2, String typeCurrency2, String accountNumber2, String string, String string2,
+			int i, int j, int k, int l, int idClient2, int idBank2, int numberMovMax2) {
+		// TODO Auto-generated constructor stub
+	}
 }
