@@ -1,5 +1,8 @@
 package pe.com.restapibank.serviceimpl;
 
+import java.util.logging.Logger;
+import java.util.logging.Level;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -18,6 +21,8 @@ import reactor.core.publisher.Mono;
 public class ClienServiceImpl implements IClientService{
 
 	private final WebClient webClient;
+    // Create a Logger
+    Logger logger = Logger.getLogger(ClienServiceImpl.class.getName());		
 	
 	public ClienServiceImpl(WebClient.Builder webClientBuilder) {
 		this.webClient = webClientBuilder.baseUrl("http://localhost:8083").build();
@@ -28,6 +33,7 @@ public class ClienServiceImpl implements IClientService{
 	
 	@Override
 	public Flux<Client> getAll() {
+		logger.log(Level.INFO, "Mostrar todos los clientes");
 		return clientRepo.findAll();
 	}
 
