@@ -24,7 +24,7 @@ import reactor.core.publisher.Mono;
 @Log4j2
 public class ClientController {
 
-	@Autowired
+	@Autowired 	
 	private IClientService clientService;
 	
 	@GetMapping
