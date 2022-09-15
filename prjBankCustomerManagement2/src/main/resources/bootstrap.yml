@@ -1,0 +1,10 @@
+server:
+  port: 8085 
+spring:
+  application:
+    name: prj-customer-mngt-bank-2
+  cloud:
+    config:
+      uri: http://localhost:8084
+      username: root
+      password: cl@v3
